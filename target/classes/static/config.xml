@@ -14,7 +14,7 @@
 
 	<!-- Local Config Starts -->
     <blti:icon>http://127.0.0.1:9991/min-logo.png</blti:icon>
-    <blti:launch_url>http://127.0.0.1:9991/entryPoint</blti:launch_url>
+    <blti:launch_url>http://127.0.0.1:9991/my_lti</blti:launch_url>
 	<!-- Local Config Ends -->
 
 

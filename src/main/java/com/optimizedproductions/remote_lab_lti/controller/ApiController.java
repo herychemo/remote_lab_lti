@@ -50,6 +50,12 @@ public class ApiController {
 			System.err.println( ex.getMessage() );
 			return "Access Denied";
 		}
+		if( ! ltiResult.getSuccess() ){
+			System.err.println("Bad Oauth Request");
+			System.err.println(ltiResult.getMessage());
+			System.err.println(ltiResult.getError().toString());
+			return ltiResult.getMessage();
+		}
 
 		//  Get Incoming Parameters
 		Enumeration<String> keys = request.getParameterNames();

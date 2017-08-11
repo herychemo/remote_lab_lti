@@ -76,6 +76,23 @@
 			<version>1.1.2</version>
 		</dependency>
 
+
+		<dependency>
+			<groupId>optimizedproductions.com</groupId>
+			<artifactId>com.optimizedproductions.serialHelper</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+		<!--
+		mvn install:install-file
+			-Dfile="D:\Projects\libreria\Testeo de librería Java escritorio\Latest\serialHelper.jar"
+			-DgroupId=optimizedproductions.com
+			-DartifactId=com.optimizedproductions.serialHelper
+			-Dversion=1.7.5
+			-Dpackaging=jar
+			-DgeneratePom=true
+		mvn install:install-file -Dfile="D:\Projects\libreria\Testeo de librería Java escritorio\Latest\serialHelper.jar" -DgroupId=optimizedproductions.com -DartifactId=com.optimizedproductions.serialHelper -Dversion=1.7.5 -Dpackaging=jar -DgeneratePom=true
+		-->
+
 	</dependencies>
 
 </project>

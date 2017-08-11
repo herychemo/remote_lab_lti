@@ -74,11 +74,15 @@ public class ApiController {
 				){
 			//
 			System.out.println(  json.toJSONString()  );
+			JSONObject args = new JSONObject();
+
+			args.put("student_full_name", json.get("lis_person_name_full"));
+			args.put("activity_name",     ((String)json.get("custom_activity")).replace("_"," ")  );
 
 			return GlobalHelper.render_file(
 					String.format(PRIVATE_FILE_TEMPLATE,
 							json.getOrDefault("custom_activity", "123")
-					),  json );
+					),  args );
 		}
 		return "There was a problem with your LTI Basic Data";
 	}

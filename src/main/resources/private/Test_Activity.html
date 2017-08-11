@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>${{ custom_activity }}</title>
+	<title>${{ activity_name }}</title>
 
 	<meta name="viewport"
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -12,6 +12,7 @@
 </head>
 <body>
 
+	<!-- Navbar -->
 	<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
 		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -34,8 +35,10 @@
 	</nav>
 
 	<div class="container main">
-		<h1>${{ custom_activity }}, Welcome ${{ lis_person_name_full }}</h1>
+		<h1>${{ activity_name }}, Welcome ${{ student_full_name }}</h1>
 
+
+		<!-- Simple Video Receptor -->
 		<div class="card">
 			<div class="card-img-top text-center">
 				<img class="" src="./img/loading.gif" alt="Card image cap">
@@ -46,9 +49,11 @@
 			</div>
 		</div>
 
+
+		<!-- Activity Instructions -->
 		<h3>Instructions</h3>
-		<p>
-			Lorem Ipsum
+		<p class="text-justify" id="instructions-printer">
+			Waiting For Instructions.
 		</p>
 
 	</div>

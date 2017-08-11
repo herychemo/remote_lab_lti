@@ -67,7 +67,6 @@ public class ApiController {
 			return "{res:\"Ok\"}";
 		} catch (IOException | OAuthException | GeneralSecurityException e) {
 			Logger.getLogger(ApiController.class.getName()).log(Level.SEVERE, null, e);
-			e.printStackTrace();
 			return "{res:\"Internal Server Error\"}";
 		}
 	}

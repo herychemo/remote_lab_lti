@@ -54,20 +54,20 @@ public class ApiController {
 		final String grade = (String) json.get("grade");
 
 		if(   !key.equals(KEY) || !secret.equals(SECRET)    )
-			return "{res:\"Bad Credentials\"}";
+			return "{\"res\":\"Bad Credentials\"}";
 		if( grade == null )
-			return "{res:\"No Grade in Params\"}";
+			return "{\"res\":\"No Grade in Params\"}";
 
 		float numeric_grade = Float.valueOf(grade);
 		if( numeric_grade > 1.0 || numeric_grade < 0.0 )
-			return "{res:\"Bad Grade Format\"}";
+			return "{\"res\":\"Bad Grade Format\"}";
 
 		try {
 			IMSPOXRequest.sendReplaceResult(lis_outcome_service_url, KEY,SECRET,lis_result_sourcedid, grade);
-			return "{res:\"Ok\"}";
+			return "{\"res\":\"Ok\"}";
 		} catch (IOException | OAuthException | GeneralSecurityException e) {
 			Logger.getLogger(ApiController.class.getName()).log(Level.SEVERE, null, e);
-			return "{res:\"Internal Server Error\"}";
+			return "{\"res\":\"Internal Server Error\"}";
 		}
 	}
 

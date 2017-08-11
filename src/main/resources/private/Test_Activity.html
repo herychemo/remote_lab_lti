@@ -58,7 +58,7 @@
 
 	</div>
 
-	<script src="./js/jquery-3.1.1.slim.min.js"></script>
+	<script src="./js/jquery-3.1.1.min.js"></script>
 	<script src="./js/tether.min.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
 	<script>
@@ -70,9 +70,10 @@
 				lis_outcome_service_url : "${{ lis_outcome_service_url }}",
 				key : "${{ key }}",
 				secret : "${{ secret }}",
-				lis_result_sourcedid : "${{ lis_result_sourcedid }}",
+				lis_result_sourcedid : '${{ lis_result_sourcedid }}',
 				grade : grades
 			}, function (data) {
+				data = JSON.parse(data);
 				if ( data.res === 'Ok' ){
 					alert("Everything Is Okay");
 					window.location.replace(go_back_url);
@@ -82,7 +83,7 @@
 		}
 
 		// For Test Send Grades
-		setTimeout(function(){ send_grades(1.0) }, 4000);
+		//setTimeout(function(){ send_grades(0.78) }, 4000);
 	</script>
 </body>
 </html>

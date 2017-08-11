@@ -72,12 +72,13 @@ public class ApiController {
 						&&
 						json.getOrDefault("lti_version", NONE_VALUE).equals( "LTI-1p0" )
 				){
-			//
+			//  Filling Params
 			System.out.println(  json.toJSONString()  );
 			JSONObject args = new JSONObject();
 
 			args.put("student_full_name", json.get("lis_person_name_full"));
 			args.put("activity_name",     ((String)json.get("custom_activity")).replace("_"," ")  );
+			args.put("go_back_url", json.get("launch_presentation_return_url"));
 
 			return GlobalHelper.render_file(
 					String.format(PRIVATE_FILE_TEMPLATE,

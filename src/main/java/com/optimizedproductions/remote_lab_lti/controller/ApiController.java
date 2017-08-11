@@ -30,6 +30,7 @@ import java.util.logging.Logger;
 public class ApiController {
 
 	private static final String NONE_VALUE = "None";
+	private static final String PRIVATE_FILE_TEMPLATE = "private/%1$s.html";
 
 	private static final String KEY = "843ad69b5ed55c307bd5e8013e495f64";
 	private static final String SECRET = "91f3e802d1b8fab4d41e519657680626";
@@ -68,7 +69,10 @@ public class ApiController {
 			//
 			System.out.println(  json.toJSONString()  );
 
-			return GlobalHelper.render_file( "" , json );
+			return GlobalHelper.render_file(
+					String.format(PRIVATE_FILE_TEMPLATE,
+							json.getOrDefault("custom_activity", "123")
+					),  json );
 		}
 		return "There was a problem with your LTI Basic Data";
 	}

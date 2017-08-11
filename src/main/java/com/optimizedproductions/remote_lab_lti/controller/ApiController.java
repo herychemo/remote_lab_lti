@@ -1,6 +1,7 @@
 package com.optimizedproductions.remote_lab_lti.controller;
 
-import com.optimizedproductions.remote_lab_lti.helpers.GlobalHelper;
+import com.optimizedproductions.remote_lab_lti.helper.GlobalHelper;
+import com.optimizedproductions.remote_lab_lti.server.SerialServer;
 import oauth.signpost.exception.OAuthException;
 import org.imsglobal.lti.launch.LtiOauthVerifier;
 import org.imsglobal.lti.launch.LtiVerificationException;
@@ -11,15 +12,17 @@ import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.async.DeferredResult;
+import serialHelper.events.LineAvailableListener;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.optimizedproductions.remote_lab_lti.helpers.GlobalHelper.get_incoming_params;
+import static com.optimizedproductions.remote_lab_lti.helper.GlobalHelper.get_incoming_params;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
  *
@@ -122,5 +125,26 @@ public class ApiController {
 		}
 		return "There was a problem with your LTI Basic Data";
 	}
+
+
+
+	// Testing Async Request For Serial Answers
+
+	@RequestMapping(value = "/ping", method = GET)
+	public DeferredResult<String> ping(){
+		final DeferredResult<String> defResult = new DeferredResult<>();
+		SerialServer.set_line_listener( line -> {
+			if( !defResult.hasResult() ){
+				defResult.setResult(
+						String.format("{\"res\" : \"%1$s\"}", line)
+				);
+				SerialServer.set_line_listener(null);
+			}
+		});
+		SerialServer serial = SerialServer.getInstance();
+		serial.serial.write("ping\n");
+		return defResult;
+	}
+
 
 }

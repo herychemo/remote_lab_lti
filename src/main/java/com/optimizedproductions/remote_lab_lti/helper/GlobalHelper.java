@@ -1,4 +1,4 @@
-package com.optimizedproductions.remote_lab_lti.helpers;
+package com.optimizedproductions.remote_lab_lti.helper;
 
 import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONObject;

@@ -1,5 +1,6 @@
 package com.optimizedproductions.remote_lab_lti.controller;
 
+import com.optimizedproductions.remote_lab_lti.helpers.GlobalHelper;
 import org.imsglobal.lti.launch.LtiOauthVerifier;
 import org.imsglobal.lti.launch.LtiVerificationException;
 import org.imsglobal.lti.launch.LtiVerificationResult;
@@ -65,7 +66,9 @@ public class ApiController {
 						json.getOrDefault("lti_version", NONE_VALUE).equals( "LTI-1p0" )
 				){
 			//
-			return "";
+			System.out.println(  json.toJSONString()  );
+
+			return GlobalHelper.render_file( "" , json );
 		}
 		return "There was a problem with your LTI Basic Data";
 	}

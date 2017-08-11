@@ -3,10 +3,12 @@ package com.optimizedproductions.remote_lab_lti.helpers;
 import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONObject;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -23,6 +25,18 @@ public class GlobalHelper {
 			e.printStackTrace();
 			return "";
 		}
+	}
+
+	public static JSONObject get_incoming_params(HttpServletRequest request){
+		//  Get Incoming Parameters
+		Enumeration<String> keys = request.getParameterNames();
+		JSONObject json = new JSONObject();
+		while( keys.hasMoreElements() ){
+			String next = keys.nextElement();
+			String val = request.getParameter( next );
+			json.put(next, val);
+		}
+		return json;
 	}
 
 	public static String render_file(final String path, final JSONObject args){

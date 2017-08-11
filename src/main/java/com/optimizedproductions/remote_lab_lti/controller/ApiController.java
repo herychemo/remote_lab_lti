@@ -58,13 +58,7 @@ public class ApiController {
 		}
 
 		//  Get Incoming Parameters
-		Enumeration<String> keys = request.getParameterNames();
-		JSONObject json = new JSONObject();
-		while( keys.hasMoreElements() ){
-			String next = keys.nextElement();
-			String val = request.getParameter( next );
-			json.put(next, val);
-		}
+		JSONObject json = get_incoming_params( request );
 
 		//  Check If Request Has The Basic Lti Info And It Is Correct.
 		if(

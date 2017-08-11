@@ -130,7 +130,7 @@ public class ApiController {
 
 	// Testing Async Request For Serial Answers
 
-	@RequestMapping(value = "/ping", method = GET)
+	@RequestMapping(value = "/toggle13", method = GET)
 	public DeferredResult<String> ping(){
 		final DeferredResult<String> defResult = new DeferredResult<>();
 		SerialServer.set_line_listener( line -> {
@@ -142,7 +142,7 @@ public class ApiController {
 			}
 		});
 		SerialServer serial = SerialServer.getInstance();
-		serial.serial.write("ping\n");
+		serial.serial.write("toggle13\n");
 		return defResult;
 	}
 

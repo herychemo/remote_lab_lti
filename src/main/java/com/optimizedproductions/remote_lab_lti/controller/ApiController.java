@@ -1,19 +1,25 @@
 package com.optimizedproductions.remote_lab_lti.controller;
 
 import com.optimizedproductions.remote_lab_lti.helpers.GlobalHelper;
+import oauth.signpost.exception.OAuthException;
 import org.imsglobal.lti.launch.LtiOauthVerifier;
 import org.imsglobal.lti.launch.LtiVerificationException;
 import org.imsglobal.lti.launch.LtiVerificationResult;
 import org.imsglobal.lti.launch.LtiVerifier;
+import org.imsglobal.pox.IMSPOXRequest;
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static com.optimizedproductions.remote_lab_lti.helpers.GlobalHelper.get_incoming_params;
 
 /**
  *
@@ -35,6 +41,36 @@ public class ApiController {
 	private static final String KEY = "843ad69b5ed55c307bd5e8013e495f64";
 	private static final String SECRET = "91f3e802d1b8fab4d41e519657680626";
 
+	@RequestMapping(value = "/send_grades", method = RequestMethod.POST)
+	public String send_grades(HttpServletRequest request){
+
+		//  Get Incoming Parameters
+		JSONObject json = get_incoming_params( request );
+
+		final String lis_outcome_service_url = (String) json.getOrDefault("lis_outcome_service_url", NONE_VALUE);
+		final String key = (String) json.getOrDefault("key", NONE_VALUE);
+		final String secret = (String) json.getOrDefault("secret", NONE_VALUE);
+		final String lis_result_sourcedid = (String) json.getOrDefault("lis_result_sourcedid", NONE_VALUE);
+		final String grade = (String) json.get("grade");
+
+		if(   !key.equals(KEY) || !secret.equals(SECRET)    )
+			return "{res:\"Bad Credentials\"}";
+		if( grade == null )
+			return "{res:\"No Grade in Params\"}";
+
+		float numeric_grade = Float.valueOf(grade);
+		if( numeric_grade > 1.0 || numeric_grade < 0.0 )
+			return "{res:\"Bad Grade Format\"}";
+
+		try {
+			IMSPOXRequest.sendReplaceResult(lis_outcome_service_url, KEY,SECRET,lis_result_sourcedid, grade);
+			return "{res:\"Ok\"}";
+		} catch (IOException | OAuthException | GeneralSecurityException e) {
+			Logger.getLogger(ApiController.class.getName()).log(Level.SEVERE, null, e);
+			e.printStackTrace();
+			return "{res:\"Internal Server Error\"}";
+		}
+	}
 
 	@RequestMapping(value = "/entryPoint", method = RequestMethod.POST)
 	public String entryPoint(HttpServletRequest request){

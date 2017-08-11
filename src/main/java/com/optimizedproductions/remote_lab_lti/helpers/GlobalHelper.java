@@ -9,6 +9,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class GlobalHelper {
 
@@ -42,7 +44,17 @@ public class GlobalHelper {
 		return path;
 	}
 
-	public static String render_args(final String template, final JSONObject args){
+	public static String render_args(String template, final JSONObject args){
+		String my_regex = "\\$\\{\\{(.*?)\\}\\}";
+		Pattern p = Pattern.compile( my_regex );
+		while (true){
+			Matcher m = p.matcher(template);
+			if( m.find() ){
+				String key = m.group(1).trim();
+				template = m.replaceFirst((String) args.getOrDefault(key, key));
+			}else
+				break;
+		}
 		return template;
 	}
 

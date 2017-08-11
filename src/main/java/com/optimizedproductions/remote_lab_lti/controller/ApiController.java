@@ -110,6 +110,12 @@ public class ApiController {
 			args.put("activity_name",     ((String)json.get("custom_activity")).replace("_"," ")  );
 			args.put("go_back_url", json.get("launch_presentation_return_url"));
 
+			args.put("lis_outcome_service_url", json.get("lis_outcome_service_url"));
+			args.put("key", json.get("oauth_consumer_key"));
+			args.put("secret", SECRET);
+			args.put("lis_result_sourcedid", json.get("lis_result_sourcedid"));
+
+
 			return GlobalHelper.render_file(
 					String.format(PRIVATE_FILE_TEMPLATE,
 							json.getOrDefault("custom_activity", "123")

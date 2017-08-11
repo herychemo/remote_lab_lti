@@ -64,6 +64,25 @@
 	<script>
 		// If you want to save a value from templates use this space, eg.
 		var go_back_url = "${{ go_back_url }}";
+		
+		function send_grades( grades ) {
+			$.post("./send_grades", {
+				lis_outcome_service_url : "${{ lis_outcome_service_url }}",
+				key : "${{ key }}",
+				secret : "${{ secret }}",
+				lis_result_sourcedid : "${{ lis_result_sourcedid }}",
+				grade : grades
+			}, function (data) {
+				if ( data.res === 'Ok' ){
+					alert("Everything Is Okay");
+					window.location.replace(go_back_url);
+				}else
+					alert( data.res );
+			});
+		}
+
+		// For Test Send Grades
+		setTimeout(function(){ send_grades(1.0) }, 4000);
 	</script>
 </body>
 </html>

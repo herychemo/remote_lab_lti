@@ -33,14 +33,6 @@ public class ApiController {
 	private static final String KEY = "843ad69b5ed55c307bd5e8013e495f64";
 	private static final String SECRET = "91f3e802d1b8fab4d41e519657680626";
 
-	private Integer c;
-
-	@RequestMapping(value="/heartbeat", method= RequestMethod.GET)
-	public String heartbeat2(){
-		if( c == null )
-			c = 0;
-		return "counter: " + ( c++ );
-	}
 
 	@RequestMapping(value = "/entryPoint", method = RequestMethod.POST)
 	public String entryPoint(HttpServletRequest request){

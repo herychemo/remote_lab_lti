@@ -15,7 +15,7 @@
 		}
 		.state-printer div{
 			width: 100%;
-			min-height: 60px;
+			min-height: 30px;
 		}
 		.state-on div{
 			background-color: #62ff3d;
@@ -24,6 +24,9 @@
 			background-color: #c9302c;
 		}
 		.btn{
+			cursor: pointer;
+		}
+		#user-group .state-printer div{
 			cursor: pointer;
 		}
 	</style>
@@ -68,40 +71,44 @@
 		</div>
 
 
-		<!-- Activity Instructions -->
-		<h3>Instructions</h3>
-		<p class="text-justify " id="instructions-printer">
-			The Activity is pretty easy!
-			<br>1.- Check the Target Led States In The "Target States" Section.
-			<br>2.- Configure The Same Led States Order Using The "User States" Section.
-			<br>3.- Verify The Physical Circuit Using The Video Stream.
-			<br>4.- Click Finish And You'll Get Your Grade.
-		</p>
-		<hr>
 		<div class="row">
-			<div class="col-md-5 offset-md-1 card">
-				<h3>Target States</h3>
-				<div class="row" id="target-group">
-					<div class="point col state-printer state-on"><div></div><span>On</span></div>
-					<div class="point col state-printer state-off"><div></div><span>Off</span></div>
-					<div class="point col state-printer state-off"><div></div><span>Off</span></div>
-					<div class="point col state-printer state-on"><div></div><span>On</span></div>
-				</div>
+
+			<div class="col-md-6 card">
+				<!-- Activity Instructions -->
+				<h3>Instructions</h3>
+				<p class="text-justify " id="instructions-printer">
+					The Activity is pretty easy!
+					<br>1.- Check the Target Led States In The "Target States" Section.
+					<br>2.- Configure The Same Led States Order Using The "User States" Section.
+					<br>3.- Verify The Physical Circuit Using The Video Stream.
+					<br>4.- Click Finish And You'll Get Your Grade.
+				</p>
 			</div>
 
-			<div class="col-md-5 card">
-				<h3>User States</h3>
-				<div class="row" id="user-group">
-					<div class="point col state-printer state-on"><div></div><span>Led 1</span></div>
-					<div class="point col state-printer state-off"><div></div><span>Led 2</span></div>
-					<div class="point col state-printer state-off"><div></div><span>Led 3</span></div>
-					<div class="point col state-printer state-on"><div></div><span>Led 4</span></div>
+			<div class="col-md-6">
+				<div class="col-md-12 card">
+					<h3>Target States</h3>
+					<div class="row" id="target-group">
+						<div class="point col state-printer state-on"><div class="rounded"></div><span>On</span></div>
+						<div class="point col state-printer state-off"><div class="rounded"></div><span>Off</span></div>
+						<div class="point col state-printer state-off"><div class="rounded"></div><span>Off</span></div>
+						<div class="point col state-printer state-on"><div class="rounded"></div><span>On</span></div>
+					</div>
+				</div>
+
+				<div class="col-md-12 card">
+					<h3>User States</h3>
+					<div class="row" id="user-group">
+						<div class="point col state-printer state-on"><div class="rounded"></div><span>Led 1</span></div>
+						<div class="point col state-printer state-off"><div class="rounded"></div><span>Led 2</span></div>
+						<div class="point col state-printer state-off"><div class="rounded"></div><span>Led 3</span></div>
+						<div class="point col state-printer state-on"><div class="rounded"></div><span>Led 4</span></div>
+					</div>
 				</div>
 			</div>
-
-			<button class="btn btn-outline-primary col-md-1">Finish</button>
-
 		</div>
+		<hr>
+		<button class="btn btn-outline-primary float-right">Finish</button>
 
 
 	</div>

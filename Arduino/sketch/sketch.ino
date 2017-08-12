@@ -28,7 +28,7 @@ void loop() {
       digitalWrite(LED3, LOW);
       digitalWrite(LED4, LOW);
       Serial.println("1");
-    }else if( inString.equals("query-leds") ){
+    }else if( inString.equals("led-query") ){
       String output = ""
         + String( digitalRead( LED1 ) )
         + String( digitalRead( LED2 ) )

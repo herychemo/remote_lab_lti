@@ -132,7 +132,25 @@ public class ApiController {
 
 	// Testing Async Request For Serial Answers
 
-	@RequestMapping(value = "/data/toggle/{led_index}", method = POST)
+
+
+	@RequestMapping(value = "/data/led-query[/]", method = POST)
+	public DeferredResult<String> led_query(@PathVariable int led_index){
+		final DeferredResult<String> defResult = new DeferredResult<>();
+		SerialServer.set_line_listener( line -> {
+			if( !defResult.hasResult() ){
+				defResult.setResult(
+						String.format("{\"res\" : \"%1$s\"}", line)
+				);
+				SerialServer.set_line_listener(null);
+			}
+		});
+		SerialServer serial = SerialServer.getInstance();
+		serial.serial.write(    "led-query\n");
+		return defResult;
+	}
+
+	@RequestMapping(value = "/data/toggle/{led_index}[/]", method = POST)
 	public DeferredResult<String> led_toggle(@PathVariable int led_index){
 		final DeferredResult<String> defResult = new DeferredResult<>();
 		SerialServer.set_line_listener( line -> {

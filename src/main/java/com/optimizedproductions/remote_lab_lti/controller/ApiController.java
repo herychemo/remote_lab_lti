@@ -166,5 +166,21 @@ public class ApiController {
 		return defResult;
 	}
 
+	@RequestMapping(value = "/data/reset[/]", method = POST)
+	public DeferredResult<String> led_reset(){
+		final DeferredResult<String> defResult = new DeferredResult<>();
+		SerialServer.set_line_listener( line -> {
+			if( !defResult.hasResult() ){
+				defResult.setResult(
+						String.format("{\"res\" : \"%1$s\"}", line)
+				);
+				SerialServer.set_line_listener(null);
+			}
+		});
+		SerialServer serial = SerialServer.getInstance();
+		serial.serial.write( "reset\n" );
+		return defResult;
+	}
+
 
 }

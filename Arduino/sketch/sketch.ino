@@ -18,15 +18,10 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   if (stringComplete) {
-    //inString = Serial.readString();
-    if (inString.equals("toggle0")) 
-      toggle_n_print_status(  LED1  );
-    else if (inString.equals("toggle1")) 
-      toggle_n_print_status(  LED2  );
-    else if (inString.equals("toggle2")) 
-      toggle_n_print_status(  LED3  );
-    else if (inString.equals("toggle3"))
-      toggle_n_print_status(  LED4  );
+    if (inString.equals("toggle0"))       toggle_n_print_status(  LED1  );
+    else if (inString.equals("toggle1"))  toggle_n_print_status(  LED2  );
+    else if (inString.equals("toggle2"))  toggle_n_print_status(  LED3  );
+    else if (inString.equals("toggle3"))  toggle_n_print_status(  LED4  );
     else if (inString.equals("reset")) {
       digitalWrite(LED1, LOW);
       digitalWrite(LED2, LOW);

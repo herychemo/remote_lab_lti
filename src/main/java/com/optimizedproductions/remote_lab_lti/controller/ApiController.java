@@ -9,6 +9,7 @@ import org.imsglobal.lti.launch.LtiVerificationResult;
 import org.imsglobal.lti.launch.LtiVerifier;
 import org.imsglobal.pox.IMSPOXRequest;
 import org.json.simple.JSONObject;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,7 @@ import java.util.logging.Logger;
 
 import static com.optimizedproductions.remote_lab_lti.helper.GlobalHelper.get_incoming_params;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  *
@@ -130,8 +132,8 @@ public class ApiController {
 
 	// Testing Async Request For Serial Answers
 
-	@RequestMapping(value = "/toggle13", method = GET)
-	public DeferredResult<String> ping(){
+	@RequestMapping(value = "/data/toggle/{led_index}", method = POST)
+	public DeferredResult<String> led_toggle(@PathVariable int led_index){
 		final DeferredResult<String> defResult = new DeferredResult<>();
 		SerialServer.set_line_listener( line -> {
 			if( !defResult.hasResult() ){
@@ -142,7 +144,7 @@ public class ApiController {
 			}
 		});
 		SerialServer serial = SerialServer.getInstance();
-		serial.serial.write("toggle13\n");
+		serial.serial.write(String.format("toggle%1$d\n", led_index));
 		return defResult;
 	}
 

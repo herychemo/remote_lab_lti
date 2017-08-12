@@ -135,7 +135,7 @@ public class ApiController {
 
 
 	@RequestMapping(value = "/data/led-query[/]", method = POST)
-	public DeferredResult<String> led_query(@PathVariable int led_index){
+	public DeferredResult<String> led_query(){
 		final DeferredResult<String> defResult = new DeferredResult<>();
 		SerialServer.set_line_listener( line -> {
 			if( !defResult.hasResult() ){

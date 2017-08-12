@@ -10,18 +10,21 @@
 	<link rel="stylesheet" href="./css/bootstrap.min.css">
 	<style>
 		.state-printer{
-			min-height: 60px;
 			padding: 6px;
+			text-align: center;
 		}
 		.state-printer div{
-			height: 100%;
 			width: 100%;
+			min-height: 60px;
 		}
 		.state-on div{
 			background-color: #62ff3d;
 		}
 		.state-off div{
 			background-color: #c9302c;
+		}
+		.btn{
+			cursor: pointer;
 		}
 	</style>
 </head>
@@ -68,27 +71,31 @@
 		<!-- Activity Instructions -->
 		<h3>Instructions</h3>
 		<p class="text-justify " id="instructions-printer">
-			Waiting For Instructions.
+			The Activity is pretty easy!
+			<br>1.- Check the Target Led States In The "Target States" Section.
+			<br>2.- Configure The Same Led States Order Using The "User States" Section.
+			<br>3.- Verify The Physical Circuit Using The Video Stream.
+			<br>4.- Click Finish And You'll Get Your Grade.
 		</p>
-
+		<hr>
 		<div class="row">
-			<div class="col-md-5 offset-md-1 ">
-				<h3>Target Configuration</h3>
+			<div class="col-md-5 offset-md-1 card">
+				<h3>Target States</h3>
 				<div class="row" id="target-group">
-					<div class="point col state-printer state-on"><div></div></div>
-					<div class="point col state-printer state-off"><div></div></div>
-					<div class="point col state-printer state-off"><div></div></div>
-					<div class="point col state-printer state-on"><div></div></div>
+					<div class="point col state-printer state-on"><div></div><span>On</span></div>
+					<div class="point col state-printer state-off"><div></div><span>Off</span></div>
+					<div class="point col state-printer state-off"><div></div><span>Off</span></div>
+					<div class="point col state-printer state-on"><div></div><span>On</span></div>
 				</div>
 			</div>
 
-			<div class="col-md-5">
-				<h3>User Configuration</h3>
+			<div class="col-md-5 card">
+				<h3>User States</h3>
 				<div class="row" id="user-group">
-					<div class="point col state-printer state-on"><div></div></div>
-					<div class="point col state-printer state-off"><div></div></div>
-					<div class="point col state-printer state-off"><div></div></div>
-					<div class="point col state-printer state-on"><div></div></div>
+					<div class="point col state-printer state-on"><div></div><span>Led 1</span></div>
+					<div class="point col state-printer state-off"><div></div><span>Led 2</span></div>
+					<div class="point col state-printer state-off"><div></div><span>Led 3</span></div>
+					<div class="point col state-printer state-on"><div></div><span>Led 4</span></div>
 				</div>
 			</div>
 

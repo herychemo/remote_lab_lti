@@ -8,7 +8,22 @@
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
 	<link rel="stylesheet" href="./css/bootstrap.min.css">
-
+	<style>
+		.state-printer{
+			min-height: 60px;
+			padding: 6px;
+		}
+		.state-printer div{
+			height: 100%;
+			width: 100%;
+		}
+		.state-on div{
+			background-color: #62ff3d;
+		}
+		.state-off div{
+			background-color: #c9302c;
+		}
+	</style>
 </head>
 <body>
 
@@ -52,9 +67,35 @@
 
 		<!-- Activity Instructions -->
 		<h3>Instructions</h3>
-		<p class="text-justify" id="instructions-printer">
+		<p class="text-justify " id="instructions-printer">
 			Waiting For Instructions.
 		</p>
+
+		<div class="row">
+			<div class="col-md-5 offset-md-1 ">
+				<h3>Target Configuration</h3>
+				<div class="row" id="target-group">
+					<div class="point col state-printer state-on"><div></div></div>
+					<div class="point col state-printer state-off"><div></div></div>
+					<div class="point col state-printer state-off"><div></div></div>
+					<div class="point col state-printer state-on"><div></div></div>
+				</div>
+			</div>
+
+			<div class="col-md-5">
+				<h3>User Configuration</h3>
+				<div class="row" id="user-group">
+					<div class="point col state-printer state-on"><div></div></div>
+					<div class="point col state-printer state-off"><div></div></div>
+					<div class="point col state-printer state-off"><div></div></div>
+					<div class="point col state-printer state-on"><div></div></div>
+				</div>
+			</div>
+
+			<button class="btn btn-outline-primary col-md-1">Finish</button>
+
+		</div>
+
 
 	</div>
 

@@ -99,10 +99,10 @@
 				<div class="col-md-12 card">
 					<h3>User States</h3>
 					<div class="row" id="user-group">
-						<div class="point col state-printer state-on"><div class="rounded"></div><span>Led 1</span></div>
-						<div class="point col state-printer state-off"><div class="rounded"></div><span>Led 2</span></div>
-						<div class="point col state-printer state-off"><div class="rounded"></div><span>Led 3</span></div>
-						<div class="point col state-printer state-on"><div class="rounded"></div><span>Led 4</span></div>
+						<div class="point col state-printer state-on"><div class="rounded" data-led-target="0"></div><span>Led 1</span></div>
+						<div class="point col state-printer state-off"><div class="rounded" data-led-target="1"></div><span>Led 2</span></div>
+						<div class="point col state-printer state-off"><div class="rounded" data-led-target="2"></div><span>Led 3</span></div>
+						<div class="point col state-printer state-on"><div class="rounded" data-led-target="3"></div><span>Led 4</span></div>
 					</div>
 				</div>
 			</div>
@@ -119,6 +119,39 @@
 	<script>
 		// If you want to save a value from templates use this space, eg.
 		var go_back_url = "${{ go_back_url }}";
+
+		var $user_group;
+		var main = function(){
+			console.log("jQuery is Working!");
+
+			$.get("./data/reset");
+
+			$user_group = $("#user-group .state-printer div");
+			$user_group.click(function(){
+				var url = "./data/toggle/" + $(this).data('led-target');
+				$.post(url, function () {
+					update_led_states();
+				});
+			});
+
+			update_led_states();
+		};
+		$(main);
+
+		function update_led_states() {
+			$.getJSON('./data/led-query', function(data){
+				var states = data.res;
+				for (var i = 0 ; i < states.length ; i++){
+					var $item = $($user_group[i]);
+					$item.removeClass('state-on');
+					$item.removeClass('state-off');
+					if( states.charAt(i) === '1' )
+						$item.addClass('state-on');
+					else
+						$item.addClass('state-off');
+				}
+			});
+		}
 		
 		function send_grades( grades ) {
 			$.post("./send_grades", {

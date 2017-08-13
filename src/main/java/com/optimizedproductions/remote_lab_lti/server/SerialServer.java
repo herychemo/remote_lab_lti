@@ -36,6 +36,9 @@ public class SerialServer {
 	private static final LineAvailableListener aux_listener = new LineAvailableListener() {
 		@Override
 		public void onLineAvailable(String s) {
+			if (s.trim().isEmpty())
+				return;
+			System.out.println("Internal Received: " + s);
 			if (listener != null)
 				listener.onLineAvailable(s);
 		}

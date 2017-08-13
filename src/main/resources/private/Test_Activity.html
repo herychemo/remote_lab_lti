@@ -108,7 +108,7 @@
 			</div>
 		</div>
 		<hr>
-		<button class="btn btn-outline-primary float-right">Finish</button>
+		<button id="finish-btn" class="btn btn-outline-primary float-right">Finish</button>
 
 
 	</div>
@@ -124,7 +124,6 @@
 		var $target_group;
 		var main = function(){
 			console.log("jQuery is Working!");
-			//$.get("./data/reset");
 
 			$user_group = $("#user-group").find(".state-printer div");
 			$target_group = $("#target-group").find(".state-printer div");
@@ -144,6 +143,8 @@
 			});
 
 			update_led_states();
+
+			$("#finish-btn").click( finish_activity );
 		};
 		$(main);
 
@@ -165,6 +166,22 @@
 					$item.addClass('state-off');
 			}
 		}
+
+		function finish_activity() {
+			var total = 4;
+			var good = 0;
+			for(var i=0;i<4;i++){
+				var $user_item = $($user_group[i]).parent();
+				var $target_item = $($target_group[i]).parent();
+				if(
+					( $target_item.hasClass('state-on') && $user_item.hasClass('state-on') )
+					||
+					( $target_item.hasClass('state-off') && $user_item.hasClass('state-off') )
+				)	good++;
+			}
+			var grade = good / total;
+			send_grades( grade );
+		}
 		
 		function send_grades( grades ) {
 			$.post("./send_grades", {
@@ -176,7 +193,8 @@
 			}, function (data) {
 				data = JSON.parse(data);
 				if ( data.res === 'Ok' ){
-					alert("Everything Is Okay");
+					$.get("./data/reset");
+					alert("See You");
 					window.location.replace(go_back_url);
 				}else
 					alert( data.res );

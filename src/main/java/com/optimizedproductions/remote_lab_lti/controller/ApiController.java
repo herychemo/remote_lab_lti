@@ -134,7 +134,7 @@ public class ApiController {
 
 
 
-	@RequestMapping(value = "/data/led-query[/]", method = GET)
+	@RequestMapping(value = "/data/led-query", method = GET)
 	public DeferredResult<String> led_query(){
 		final DeferredResult<String> defResult = new DeferredResult<>();
 		SerialServer.set_line_listener( line -> {
@@ -150,7 +150,7 @@ public class ApiController {
 		return defResult;
 	}
 
-	@RequestMapping(value = "/data/toggle/{led_index}[/]", method = POST)
+	@RequestMapping(value = "/data/toggle/{led_index}", method = POST)
 	public DeferredResult<String> led_toggle(@PathVariable int led_index){
 		final DeferredResult<String> defResult = new DeferredResult<>();
 		SerialServer.set_line_listener( line -> {
@@ -166,7 +166,7 @@ public class ApiController {
 		return defResult;
 	}
 
-	@RequestMapping(value = "/data/reset[/]", method = GET)
+	@RequestMapping(value = "/data/reset", method = GET)
 	public DeferredResult<String> led_reset(){
 		final DeferredResult<String> defResult = new DeferredResult<>();
 		SerialServer.set_line_listener( line -> {

@@ -133,7 +133,7 @@
 			for(var i=0; i < 4 ;i++)
 				if( Math.random() > 0.5 )	initial_states += "1";
 				else						initial_states += "0";
-			from_string_to_gui(initial_states, $target_group);
+			from_string_to_gui(initial_states, $target_group, true);
 
 			$user_group.click(function(){
 				var url = "./data/toggle/" + $(this).data('led-target');
@@ -150,20 +150,24 @@
 
 		function update_led_states() {
 			$.getJSON('./data/led-query', function(data){
-				console.log(data);
 				from_string_to_gui( data.res, $user_group );
 			});
 		}
-		function from_string_to_gui(states, $group) {
+		function from_string_to_gui(states, $group, labeled) {
+			if( labeled === undefined )
+				labeled = false;
 			for (var i = 0 ; i < states.length ; i++){
 				var $item = $($group[i]).parent();
 				console.log( $item );
 				$item.removeClass('state-on');
 				$item.removeClass('state-off');
-				if( states.charAt(i) === '1' )
+				if( states.charAt(i) === '1' ){
 					$item.addClass('state-on');
-				else
+					if(labeled)	$item.find('span').text("On");
+				}else{
 					$item.addClass('state-off');
+					if(labeled)	$item.find('span').text("Off");
+				}
 			}
 		}
 

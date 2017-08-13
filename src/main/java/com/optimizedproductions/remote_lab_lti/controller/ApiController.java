@@ -129,10 +129,7 @@ public class ApiController {
 	}
 
 
-
-	// Testing Async Request For Serial Answers
-
-
+	//  Async Request For Arduino
 
 	@RequestMapping(value = "/data/led-query", method = GET)
 	public DeferredResult<String> led_query(){

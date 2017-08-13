@@ -142,7 +142,6 @@ public class ApiController {
 				defResult.setResult(
 						String.format("{\"res\" : \"%1$s\"}", line)
 				);
-				SerialServer.set_line_listener(null);
 			}
 		});
 		SerialServer serial = SerialServer.getInstance();
@@ -158,7 +157,6 @@ public class ApiController {
 				defResult.setResult(
 						String.format("{\"res\" : \"%1$s\"}", line)
 				);
-				SerialServer.set_line_listener(null);
 			}
 		});
 		SerialServer serial = SerialServer.getInstance();
@@ -174,7 +172,6 @@ public class ApiController {
 				defResult.setResult(
 						String.format("{\"res\" : \"%1$s\"}", line)
 				);
-				SerialServer.set_line_listener(null);
 			}
 		});
 		SerialServer serial = SerialServer.getInstance();

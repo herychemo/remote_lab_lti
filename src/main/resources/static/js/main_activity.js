@@ -66,6 +66,9 @@ function finish_activity() {
 }
 
 function send_grades( grades ) {
+	var lti_msg = ( grades >= 0.70 )?
+		"Felicidades, acreditaste la actividad con: " + grades * 100 + "% de aciertos" :
+		"Lo sentimos, no has aprobado la actividad." ;
 	$.post("./send_grades", {
 		lis_outcome_service_url : lis_outcome_service_url,
 		key : key,
@@ -77,7 +80,7 @@ function send_grades( grades ) {
 		if ( data.res === 'Ok' ){
 			$.get("./data/reset");
 			alert("See You");
-			window.location.replace(go_back_url);
+			window.location.replace(go_back_url + "&lti_msg=" + lti_msg);
 		}else
 			alert( data.res );
 	});

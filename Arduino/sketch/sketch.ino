@@ -1,8 +1,5 @@
 
-const int LED1 = 13;
-const int LED2 = 12;
-const int LED3 = 11;
-const int LED4 = 10;
+const int LED1 = 13;  const int LED2 = 12;  const int LED3 = 11;  const int LED4 = 10;
 boolean stringComplete = false;
 String inString;
 
@@ -13,7 +10,7 @@ void setup() {
   pinMode(LED3, OUTPUT);
   pinMode(LED4, OUTPUT);
   Serial.begin(9600);
-  inString.reserve(200);
+  inString.reserve(100);
 }
 void loop() {
   // put your main code here, to run repeatedly:

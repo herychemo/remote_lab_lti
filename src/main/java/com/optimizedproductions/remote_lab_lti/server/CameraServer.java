@@ -40,7 +40,7 @@ public class CameraServer {
 
 		Mat webcamMatImage = new Mat();
 		String img_encoded;
-		VideoCapture capture = new VideoCapture(    2   );
+		VideoCapture capture = new VideoCapture(    0   );
 
 		//int w = 240, h = 180;
 		//int w = 320, h = 240;

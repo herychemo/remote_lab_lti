@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
-import serialHelper.events.LineAvailableListener;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -112,7 +111,7 @@ public class ApiController {
 
 			args.put("student_full_name", json.get("lis_person_name_full"));
 			args.put("activity_name",     ((String)json.get("custom_activity")).replace("_"," ")  );
-			args.put("go_back_url", json.get("launch_presentation_return_url"));
+			args.put("go_back_url", json.get("launch_presentation_return_url")  );
 
 			args.put("lis_outcome_service_url", json.get("lis_outcome_service_url"));
 			args.put("key", json.get("oauth_consumer_key"));

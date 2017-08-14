@@ -7,6 +7,7 @@
 	<groupId>com.optimizedproductions</groupId>
 	<artifactId>remote_lab_lti</artifactId>
 	<version>1.0-SNAPSHOT</version>
+	<name>remote_lab_lti</name>
 
 
 	<packaging>jar</packaging>
@@ -23,14 +24,6 @@
 		<version>1.5.2.RELEASE</version>
 	</parent>
 
-
-	<repositories>
-		<repository>    <!-- OPENCV thigs -->
-			<id>javaopencvbook</id>
-			<url>https://raw.github.com/JavaOpenCVBook/code/maven2/</url>
-		</repository>
-	</repositories>
-
 	<!-- Project Dependencies -->
 	<dependencies>
 
@@ -45,20 +38,6 @@
 			<version>4.3.7.RELEASE</version>
 			<type>jar</type>
 		</dependency>
-
-
-		<dependency>    <!-- OpenCV things , , pls see, do not forget remove spaces https://github.com/JavaOpenCVBook/code/wiki/Tutorial-1- - - - Java-OpenCV-5-minute-setup  -->
-			<groupId>org.javaopencvbook</groupId>
-			<artifactId>opencvjar</artifactId>
-			<version>3.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.javaopencvbook</groupId>
-			<artifactId>opencvjar-runtime</artifactId>
-			<version>3.0.0</version>
-			<classifier>natives-windows-x86_64</classifier>
-		</dependency>
-
 
 
 		<dependency>
@@ -98,6 +77,19 @@
 			<version>1.1.2</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.github.sarxos</groupId>
+			<artifactId>webcam-capture</artifactId>
+			<version>0.3.11</version>
+		</dependency>
+
+
+		<!--
+		<dependency>
+			<groupId>optimizedproductions.com</groupId>
+			<artifactId>com.optimizedproductions.opencv</artifactId>
+			<version>3.2.0</version>
+		</dependency>-->
 
 		<dependency>
 			<groupId>optimizedproductions.com</groupId>

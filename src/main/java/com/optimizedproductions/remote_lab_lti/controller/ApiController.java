@@ -34,7 +34,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  *
  *  https://www.edu-apps.org/build_xml.html
  * eg. see in static resources
- * 
+ *
  */
 @RestController
 public class ApiController {

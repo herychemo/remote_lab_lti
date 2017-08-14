@@ -16,7 +16,6 @@ public class Application {
 	public static void main(String args[]){
 		SpringApplication.run(Application.class, args);
 
-		CameraServer.print_version();
 		MyWebSocketServer.getInstance();
 		SerialServer.getInstance();
 
@@ -24,6 +23,6 @@ public class Application {
 	}
 
 	public static class Config{
-		public static String PORT_NAME_SERIAL = "COM3";
+		public static String PORT_NAME_SERIAL = "COM4";
 	}
 }
